@@ -1,0 +1,190 @@
+/* Admin page layout only. Components and tokens come from /assets/tally.css. */
+
+/* Programmatic focus targets (route headings, main) don't need a ring. */
+.shell__main:focus,
+.page-title[tabindex="-1"]:focus,
+[data-focus-target]:focus { outline: none; }
+
+.rail__live { font-size: var(--text-12); color: var(--amber-text); padding: 0 var(--s-3); }
+
+/* tally.css .shell is a min-height grid: on short pages its rows stretch and the narrow top bar grows tall. */
+@media (max-width: 899.98px) {
+  .shell { grid-template-rows: auto minmax(0, 1fr); }
+  .rail { align-content: start; }
+}
+
+.title-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-3); min-width: 0; }
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  margin-bottom: var(--s-3);
+  font-size: var(--text-14);
+  font-weight: 600;
+  text-decoration: none;
+}
+.back-link:hover { text-decoration: underline; }
+.back-link .icon { width: 16px; height: 16px; }
+
+.header-stamp { flex: none; padding: var(--s-2) var(--s-4); }
+.header-stamp:empty { display: none; }
+
+/* ---------- Queue ---------- */
+.queue-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--s-3) var(--s-4);
+  margin-bottom: var(--s-3);
+}
+.queue-tools .tabs { flex: 1 1 30rem; min-width: 0; margin-bottom: 0; }
+.queue-search { flex: 1 1 16rem; max-width: 22rem; margin-bottom: var(--s-1); }
+
+.queue-table .q-number { white-space: nowrap; }
+.queue-table .q-progress { min-width: 150px; }
+.queue-table .q-photos .icon { display: none; }
+.q-missing { color: var(--ink-soft); font-family: var(--font-body); font-weight: 500; font-style: italic; }
+
+@media (max-width: 599.98px) {
+  .queue-search { max-width: none; }
+  .queue-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .queue-table,
+  .queue-table tbody { display: block; width: 100%; }
+  .queue-table tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "number status"
+      "customer customer"
+      "progress progress"
+      "time photos";
+    gap: var(--s-1) var(--s-3);
+    padding: var(--s-3) var(--s-4);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .queue-table tbody tr:last-child { border-bottom: 0; }
+  .queue-table td { display: block; padding: 0 !important; border: 0 !important; background: none !important; }
+  .queue-table tr.is-highlight { background: color-mix(in srgb, var(--amber) 9%, transparent); }
+  .queue-table .q-number { grid-area: number; font-size: var(--text-16); min-width: 0; }
+  .queue-table .q-status { grid-area: status; justify-self: end; }
+  .queue-table .q-customer { grid-area: customer; font-weight: 500; }
+  .queue-table .q-progress { grid-area: progress; min-width: 0; }
+  .queue-table .q-time { grid-area: time; font-size: var(--text-12); }
+  .queue-table .q-photos { grid-area: photos; justify-self: end; display: inline-flex; align-items: center; gap: 4px; font-size: var(--text-12); }
+  .queue-table .q-photos .icon { display: block; width: 14px; height: 14px; }
+}
+
+/* ---------- Upload ---------- */
+.upload-status { display: flex; flex-direction: column; align-items: center; gap: var(--s-2); font-size: var(--text-14); }
+.upload-status__line { display: inline-flex; align-items: center; gap: var(--s-2); font-weight: 600; }
+.upload-status .progress { width: 100%; }
+
+/* ---------- Draft editor ---------- */
+.lines-table th.line-no,
+.lines-table td.line-no { width: 2.75rem; color: var(--ink-soft); }
+.lines-table .line-sku { width: 9rem; }
+.lines-table .line-qty { width: 6.5rem; }
+.lines-table .line-qty .input { text-align: right; }
+.lines-table .line-unit { width: 7.5rem; }
+.lines-table .line-picked { width: 4.5rem; text-align: center; color: var(--green-text); }
+.lines-table .line-picked .icon { margin-inline: auto; }
+.lines-table .lines-empty td { padding: var(--s-6) var(--s-4); text-align: center; color: var(--ink-soft); }
+
+@media (max-width: 699.98px) {
+  .lines-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .lines-table,
+  .lines-table tbody { display: block; width: 100%; }
+  .lines-table tr:not(.lines-empty) {
+    display: grid;
+    grid-template-columns: 1.75rem minmax(0, 1.3fr) minmax(0, 0.8fr) minmax(0, 1fr) auto;
+    grid-template-areas:
+      "no desc desc desc del"
+      ". sku qty unit picked";
+    gap: var(--s-1);
+    align-items: center;
+    padding: var(--s-2);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .lines-table tr.lines-empty,
+  .lines-table tr.lines-empty td { display: block; }
+  .lines-table td { display: block; width: auto !important; padding: 0 !important; border: 0 !important; }
+  .lines-table td.line-no { grid-area: no; text-align: left; }
+  .lines-table td.line-desc { grid-area: desc; }
+  .lines-table td.line-sku { grid-area: sku; }
+  .lines-table td.line-qty { grid-area: qty; }
+  .lines-table td.line-unit { grid-area: unit; }
+  .lines-table td.line-picked { grid-area: picked; min-width: 1.5rem; }
+  .lines-table td.line-del { grid-area: del; }
+  .lines-table .input--cell { border-color: var(--rule); background: var(--sheet); }
+}
+
+.lines-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-2) var(--s-4); padding: var(--s-3) var(--s-4); border-top: 1px solid var(--rule); }
+
+.editor-bar,
+.decision-bar { margin-top: var(--s-6); border: 1px solid var(--rule); border-radius: var(--radius-sheet) var(--radius-sheet) 0 0; }
+.bar-start { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-3); margin-right: auto; }
+.save-state { font-size: var(--text-14); color: var(--ink-soft); }
+.save-state.is-dirty { color: var(--amber-text); font-weight: 600; }
+@media (max-width: 599.98px) {
+  .editor-bar,
+  .decision-bar { position: static; border-radius: var(--radius-sheet); }
+  .bar-start { flex-basis: 100%; }
+}
+
+/* ---------- Review ---------- */
+.review-count { display: flex; flex-direction: column; gap: var(--s-2); min-width: 12rem; }
+.review-marks { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-2); padding: var(--s-3) var(--s-4); border-bottom: 1px solid var(--rule-soft); font-size: var(--text-14); }
+.review-list { border-radius: 0; border: 0; box-shadow: none; }
+.viewer__main img[hidden] { display: none; }
+.viewer__fallback { display: flex; flex-direction: column; align-items: center; gap: var(--s-2); padding: var(--s-4); color: #9DAAC0; font-size: var(--text-14); text-align: center; }
+.viewer__fallback .icon { width: 40px; height: 40px; }
+.viewer__caption { font-size: var(--text-12); color: var(--ink-soft); }
+
+/* ---------- Activity ---------- */
+.activity > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2);
+  padding: var(--s-4);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+.activity > summary::-webkit-details-marker { display: none; }
+.activity > summary .icon { transition: transform 150ms; }
+.activity[open] > summary .icon { transform: rotate(180deg); }
+.activity[open] > summary { border-bottom: 1px solid var(--rule); }
+@media (min-width: 600px) { .activity > summary { padding: var(--s-4) var(--s-6); } }
+
+/* ---------- Staff accounts ---------- */
+.users-table .select { min-width: 7.5rem; }
+.users-table tr.is-inactive td:not(.users-actions) { color: var(--ink-soft); }
+.users-actions { white-space: nowrap; text-align: right; }
+.users-table td:first-child { min-width: 9rem; }
+
+/* Empty state/notice slots inside .stack must not add a gap. */
+.slot:empty { display: none; }
+
+.th-num { text-align: right !important; }
+
+/* tally.css `ol[class] { padding: 0 }` outranks `.timeline`, so restore the rail indent. */
+ol.timeline[class] { padding-left: var(--s-6); }
+
+/* Cell placeholders are labels for the stacked mobile layout; the table header covers wide screens. */
+@media (min-width: 700px) {
+  .lines-table .input--cell::placeholder { color: transparent; }
+}

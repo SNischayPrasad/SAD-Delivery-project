@@ -1,0 +1,29 @@
+{
+  "name": "tally",
+  "version": "1.0.0",
+  "description": "Invoice-to-checklist picking app: admins upload invoices, staff collect items and submit photo proof, admins verify.",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server/index.js",
+    "dev": "node --watch --env-file-if-exists=.env server/index.js",
+    "test": "node --test --test-concurrency=1 \"tests/**/*.test.js\"",
+    "sample-invoices": "node scripts/make-sample-invoices.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.125.0",
+    "@napi-rs/canvas": "^0.1.80",
+    "bcryptjs": "^3.0.3",
+    "express": "^5.2.1",
+    "multer": "^2.3.0",
+    "pdf-parse": "^2.4.5",
+    "tesseract.js": "^7.0.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "pdfkit": "^0.20.2"
+  }
+}

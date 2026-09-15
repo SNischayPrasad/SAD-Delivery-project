@@ -1,0 +1,117 @@
+/* Staff page layout only. Components and colors come from /assets/tally.css. */
+
+.staff-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.staff-view {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.staff-view:focus,
+.staff-view:focus-visible { outline: none; }
+.staff-view > .page { flex: 1 0 auto; }
+
+/* Full-width sticky header and bottom bar, with content lined up to the narrow page column (712px). */
+.staff-view > .sticky-head,
+.staff-view > .bottom-bar { padding-inline: max(var(--s-4), calc((100% - 712px) / 2)); }
+@media (min-width: 600px) {
+  .staff-view > .sticky-head,
+  .staff-view > .bottom-bar { padding-inline: max(var(--s-6), calc((100% - 712px) / 2)); }
+}
+
+/* ---- Home: search ---- */
+
+.staff-search { display: flex; gap: var(--s-2); align-items: stretch; }
+.staff-search .search { flex: 1 1 auto; }
+.staff-search .btn { min-height: 56px; }
+@media (max-width: 479.98px) {
+  .staff-search .search--lg .input { font-size: 1.0625rem; }
+}
+
+.staff-search__status { margin-top: calc(-1 * var(--s-2)); }
+
+.staff-match {
+  background: var(--highlight);
+  color: var(--highlight-ink);
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+.staff-section-head { display: flex; align-items: center; gap: var(--s-2); }
+
+/* ---- Checklist: sticky header ---- */
+
+.staff-head__row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--s-2);
+  margin-bottom: var(--s-2);
+}
+.staff-head__back { margin-left: calc(-1 * var(--s-2)); }
+.staff-head__titles { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.staff-head__titles .sticky-head__title:focus { outline: none; }
+/* Chip sits beside the customer line so a long invoice number keeps the whole row. */
+.staff-head__meta { display: flex; align-items: center; gap: var(--s-1) var(--s-2); min-width: 0; }
+.staff-head__meta > span { flex: none; display: inline-flex; }
+.staff-head__meta .sticky-head__sub { flex: 1 1 auto; }
+
+/* ---- Checklist: rows ---- */
+
+/* 44px tap area for the note link without adding 44px of height to every row. */
+.staff-note-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  min-height: 44px;
+  margin-block: -8px;
+}
+.staff-note-link .icon { width: 16px; height: 16px; }
+
+/* ---- Checklist: status notices ---- */
+
+.staff-notice:focus { outline: none; }
+/* Under 600px a banner with actions wraps; keep the icon on the same line as the text. */
+@media (max-width: 599.98px) {
+  .staff-view .banner__content { flex-basis: calc(100% - 20px - var(--s-3)); }
+}
+.staff-banner-stamp { display: flex; align-items: center; padding: var(--s-1) var(--s-2); }
+
+.staff-verdict { min-height: 132px; padding-right: 190px; }
+@media (max-width: 599.98px) {
+  .staff-verdict { padding-right: 150px; }
+}
+@media (max-width: 379.98px) {
+  .staff-verdict { padding-right: var(--s-4); padding-top: 96px; }
+}
+
+/* ---- Checklist: photos ---- */
+
+/* The shared remove button is 36px; widen its hit area to 44px without covering more of the photo. */
+.staff-view .thumb__remove::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+}
+
+@media (max-width: 599.98px) {
+  .staff-photo-actions > .btn { flex: 1 1 100%; }
+}
+.staff-upload { display: flex; flex-direction: column; gap: var(--s-1); }
+
+/* ---- Submit sheet ---- */
+
+.staff-missing { display: flex; flex-direction: column; font-size: var(--text-14); }
+.staff-missing > li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding-block: var(--s-1);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.staff-missing > li:last-child { border-bottom: 0; }

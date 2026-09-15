@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#EEF2F6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0E1520" media="(prefers-color-scheme: dark)">
+  <meta name="robots" content="noindex">
+  <title>Admin · Tally</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FFE45C'/%3E%3Cpath d='M8 8v16M13 8v16M18 8v16M23 8v16M5 21 26 11' stroke='%2314213D' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/assets/tally.css">
+  <link rel="stylesheet" href="/admin/admin.css">
+  <script type="module" src="/admin/admin.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" id="skip-link">Skip to content</a>
+  <div class="shell">
+    <aside class="rail">
+      <a class="wordmark rail__brand" href="#/queue" aria-label="Tally, go to queue">Tally</a>
+      <nav class="rail__nav" aria-label="Main">
+        <a class="rail__link" href="#/queue" data-nav="queue">Queue <span class="rail__count" id="queue-count" hidden></span></a>
+        <a class="rail__link" href="#/upload" data-nav="upload">Upload invoice</a>
+        <a class="rail__link" href="#/staff" data-nav="staff">Staff accounts</a>
+      </nav>
+      <div class="rail__footer">
+        <div id="bell-slot" class="rail__bell"></div>
+        <p class="rail__live hide-narrow" id="live-status" role="status" hidden>Reconnecting to live updates…</p>
+        <span class="rail__user hide-narrow">Signed in as <strong id="user-name">…</strong></span>
+        <button type="button" class="btn btn--ghost btn--sm hide-narrow" data-action="change-password">Change password</button>
+        <button type="button" class="btn btn--ghost btn--sm btn--icon hide-wide" data-action="change-password" aria-label="Change password" title="Change password"></button>
+        <button type="button" class="btn btn--ghost btn--sm hide-narrow" data-action="sign-out">Sign out</button>
+        <button type="button" class="btn btn--ghost btn--sm btn--icon hide-wide" data-action="sign-out" aria-label="Sign out" title="Sign out"></button>
+      </div>
+    </aside>
+    <main class="shell__main page" id="main" tabindex="-1">
+      <div class="skeleton-group" aria-busy="true" aria-label="Loading">
+        <span class="skeleton skeleton--title"></span>
+        <span class="skeleton skeleton--row"></span>
+        <span class="skeleton skeleton--row"></span>
+        <span class="skeleton skeleton--row"></span>
+      </div>
+      <noscript><p>The Tally admin app needs JavaScript. Turn it on and reload the page.</p></noscript>
+    </main>
+  </div>
+  <div id="announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

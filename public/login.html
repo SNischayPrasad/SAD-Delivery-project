@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en" data-role="staff">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sign in · Tally</title>
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#EEF2F6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0E1520" media="(prefers-color-scheme: dark)">
+  <meta name="robots" content="noindex">
+  <script>
+    // Set the role before first paint so role-specific copy never flashes.
+    (function () {
+      var role = new URLSearchParams(location.search).get('role') === 'admin' ? 'admin' : 'staff';
+      document.documentElement.setAttribute('data-role', role);
+      document.title = (role === 'admin' ? 'Admin sign-in' : 'Staff sign-in') + ' · Tally';
+    })();
+  </script>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FFE45C'/%3E%3Cpath d='M8 8v16M13 8v16M18 8v16M23 8v16M5 21 26 11' stroke='%2314213D' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/assets/tally.css">
+  <style>
+    html[data-role="admin"] .for-staff,
+    html[data-role="staff"] .for-admin { display: none !important; }
+
+    .auth {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      background:
+        repeating-linear-gradient(180deg, transparent 0 39px, color-mix(in srgb, var(--rule) 45%, transparent) 39px 40px),
+        var(--paper);
+    }
+    .auth__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s-3);
+      padding: var(--s-4);
+      padding-top: max(var(--s-4), env(safe-area-inset-top));
+    }
+    .auth__brand { font-size: var(--text-28); }
+    .auth__main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--s-4);
+      padding: var(--s-4) var(--s-4) var(--s-12);
+    }
+    .auth__card {
+      width: 100%;
+      max-width: 420px;
+      padding: var(--s-6) var(--s-5) var(--s-6);
+      overflow: hidden;
+    }
+    @media (min-width: 600px) {
+      .auth__card { padding: var(--s-8); }
+    }
+    .auth__card::before {
+      /* door letter watermark */
+      content: "B";
+      position: absolute;
+      right: -0.02em;
+      top: -0.22em;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 180px;
+      line-height: 1;
+      color: color-mix(in srgb, var(--carbon) 6%, transparent);
+      pointer-events: none;
+    }
+    html[data-role="admin"] .auth__card::before { content: "A"; }
+    .auth__plate {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-2);
+      padding: 3px var(--s-2);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-chip);
+      background: var(--sheet-sunken);
+    }
+    .auth__title { font-size: var(--text-40); margin-top: var(--s-4); position: relative; }
+    .auth__lede { color: var(--ink-soft); margin-top: var(--s-2); position: relative; }
+    .auth__form { margin-top: var(--s-6); position: relative; }
+    .password { position: relative; }
+    .password .input { padding-right: 76px; }
+    .password__toggle {
+      position: absolute;
+      top: 50%;
+      right: 4px;
+      transform: translateY(-50%);
+      min-height: 36px !important;
+    }
+    .password__toggle:active { transform: translateY(-50%); }
+    .auth__switch {
+      margin-top: var(--s-6);
+      padding-top: var(--s-4);
+      border-top: 1px solid var(--rule);
+      font-size: var(--text-14);
+      color: var(--ink-soft);
+      position: relative;
+    }
+    .auth__switch a { font-weight: 600; }
+    .auth__switch.is-emphasis {
+      color: var(--ink);
+    }
+    .auth__switch.is-emphasis a {
+      background: var(--highlight);
+      color: var(--highlight-ink);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+    .auth__help { font-size: var(--text-14); color: var(--ink-soft); text-align: center; max-width: 420px; }
+    .auth__notice { margin-top: var(--s-4); position: relative; }
+    .auth__form-error:not(:empty) {
+      padding: var(--s-2) var(--s-3);
+      border-radius: var(--radius-control);
+      background: var(--red-tint);
+    }
+  </style>
+</head>
+<body class="auth app--staff">
+  <header class="auth__top">
+    <a class="wordmark auth__brand" href="/">Tally</a>
+    <a class="link link--quiet text-14" href="/">Back to start</a>
+  </header>
+
+  <main class="auth__main">
+    <section class="sheet auth__card" aria-labelledby="auth-title">
+      <span class="eyebrow auth__plate">
+        <span class="for-admin">Door A · Office</span>
+        <span class="for-staff">Door B · Stockroom</span>
+      </span>
+      <h1 class="page-title auth__title" id="auth-title">
+        <span class="for-admin">Admin sign-in</span>
+        <span class="for-staff">Staff sign-in</span>
+      </h1>
+      <p class="auth__lede">
+        <span class="for-admin">Upload invoices, publish checklists, and verify what staff picked.</span>
+        <span class="for-staff">Find your checklist, tick items as you collect them, and send photos for review.</span>
+      </p>
+
+      <div class="auth__notice" id="notice" hidden></div>
+
+      <form class="auth__form stack stack--4" id="login-form" method="post" novalidate>
+        <div class="field" id="username-field">
+          <label class="field__label" for="username">Username</label>
+          <input class="input" id="username" name="username" type="text" autocomplete="username"
+                 autocapitalize="none" autocorrect="off" spellcheck="false" maxlength="40" required autofocus
+                 aria-describedby="username-error">
+          <p class="field__error" id="username-error"></p>
+        </div>
+        <div class="field" id="password-field">
+          <label class="field__label" for="password">Password</label>
+          <div class="password">
+            <input class="input" id="password" name="password" type="password" autocomplete="current-password"
+                   required aria-describedby="password-error">
+            <button class="btn btn--ghost btn--sm password__toggle" type="button" id="password-toggle"
+                    aria-controls="password" aria-pressed="false">Show</button>
+          </div>
+          <p class="field__error" id="password-error"></p>
+        </div>
+        <p class="field__error auth__form-error" id="form-error" role="alert"></p>
+        <button class="btn btn--primary btn--lg btn--block" type="submit" id="submit">
+          <span class="for-admin">Sign in to admin</span>
+          <span class="for-staff">Sign in</span>
+        </button>
+      </form>
+
+      <p class="auth__switch" id="switch">
+        <span class="for-admin">Picking items in the stockroom? <a id="switch-link-staff" href="/login.html?role=staff">Use the staff sign-in</a></span>
+        <span class="for-staff">Upload and review invoices? <a id="switch-link-admin" href="/login.html?role=admin">Use the admin sign-in</a></span>
+      </p>
+    </section>
+    <p class="auth__help">Forgot your password? Ask an admin to reset it for you.</p>
+  </main>
+
+  <script type="module">
+    import { api, safeNext, homeFor } from '/assets/api.js';
+    import { h, setLoading } from '/assets/ui.js';
+
+    const role = document.documentElement.dataset.role;
+    const params = new URLSearchParams(location.search);
+    const next = params.get('next');
+
+    const form = document.getElementById('login-form');
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
+    const submit = document.getElementById('submit');
+    const formError = document.getElementById('form-error');
+    const switchEl = document.getElementById('switch');
+    const notice = document.getElementById('notice');
+
+    // Keep ?next when switching doors (it is re-validated after sign-in).
+    for (const [id, otherRole] of [['switch-link-staff', 'staff'], ['switch-link-admin', 'admin']]) {
+      const p = new URLSearchParams({ role: otherRole });
+      if (next) p.set('next', next);
+      document.getElementById(id).href = `/login.html?${p}`;
+    }
+
+    const destination = (user) => safeNext(next, user.role) || homeFor(user.role);
+
+    function setFieldError(input, message) {
+      const el = document.getElementById(`${input.id}-error`);
+      el.textContent = message || '';
+      input.setAttribute('aria-invalid', message ? 'true' : 'false');
+    }
+    function clearErrors() {
+      setFieldError(username, '');
+      setFieldError(password, '');
+      formError.textContent = '';
+      switchEl.classList.remove('is-emphasis');
+    }
+    for (const input of [username, password]) {
+      input.addEventListener('input', () => {
+        if (input.getAttribute('aria-invalid') === 'true') setFieldError(input, '');
+      });
+    }
+
+    const toggle = document.getElementById('password-toggle');
+    toggle.addEventListener('click', () => {
+      const show = password.type === 'password';
+      password.type = show ? 'text' : 'password';
+      toggle.textContent = show ? 'Hide' : 'Show';
+      toggle.setAttribute('aria-pressed', String(show));
+      toggle.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+      password.focus();
+    });
+    toggle.setAttribute('aria-label', 'Show password');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      clearErrors();
+      const name = username.value.trim();
+      const pass = password.value;
+      if (!name) setFieldError(username, 'Enter your username');
+      if (!pass) setFieldError(password, 'Enter your password');
+      if (!name) return username.focus();
+      if (!pass) return password.focus();
+
+      if (password.type !== 'password') toggle.click();
+      setLoading(submit, true);
+      try {
+        const data = await api.post('/api/auth/login', { username: name, password: pass, role });
+        location.replace(destination(data.user)); // keep the spinner until the next page loads
+      } catch (err) {
+        setLoading(submit, false);
+        formError.textContent = err.message;
+        if (err.status === 403) {
+          switchEl.classList.add('is-emphasis');
+        } else if (err.status === 401) {
+          password.value = '';
+          password.focus();
+        }
+      }
+    });
+
+    // Already signed in? Offer to continue instead of silently switching accounts.
+    api.get('/api/auth/me').then((data) => {
+      const user = data?.user;
+      if (!user) return;
+      const who = user.display_name || user.username;
+      const continueLink = h('a', { class: 'btn btn--secondary btn--sm', href: destination(user) }, `Continue as ${who}`);
+      const signOutButton = h('button', { type: 'button', class: 'btn btn--ghost btn--sm' }, 'Sign out');
+      signOutButton.addEventListener('click', async () => {
+        setLoading(signOutButton, true);
+        try { await api.post('/api/auth/logout'); } catch { /* already signed out */ }
+        notice.hidden = true;
+        username.focus();
+      });
+      notice.replaceChildren(
+        h('div', { class: 'banner banner--info', role: 'status' },
+          h('div', { class: 'banner__content' },
+            h('p', { class: 'banner__title' }, `You’re already signed in as ${who}.`),
+            h('div', { class: 'banner__body' },
+              user.role === role ? 'Signing in again will switch accounts.' : `That is a ${user.role} account. Signing in here will switch accounts.`),
+            h('div', { class: 'cluster', style: { marginTop: '8px' } }, continueLink, signOutButton),
+          ),
+        ),
+      );
+      notice.hidden = false;
+    }).catch(() => {});
+  </script>
+</body>
+</html>

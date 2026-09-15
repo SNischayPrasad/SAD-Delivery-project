@@ -1,0 +1,204 @@
+{
+  "gst-tax-invoice.pdf": {
+    "method": "pdf-text",
+    "invoice_number": "SGT/2026-27/0418",
+    "customer_name": "Sharma Kirana Stores",
+    "invoice_date": "2026-09-03",
+    "items": [
+      {
+        "description": "Basmati Rice Premium 5kg bag",
+        "sku": null,
+        "quantity": 10,
+        "unit": "bag"
+      },
+      {
+        "description": "Toor Dal 1kg pack",
+        "sku": null,
+        "quantity": 25,
+        "unit": "pack"
+      },
+      {
+        "description": "Sunflower Oil 1L pouch",
+        "sku": null,
+        "quantity": 24,
+        "unit": "pcs"
+      },
+      {
+        "description": "Tata Salt 1kg",
+        "sku": null,
+        "quantity": 50,
+        "unit": "pcs"
+      },
+      {
+        "description": "Parle-G Biscuits 800g",
+        "sku": null,
+        "quantity": 12,
+        "unit": "box"
+      },
+      {
+        "description": "Surf Excel Detergent Powder 2kg",
+        "sku": null,
+        "quantity": 8,
+        "unit": "pcs"
+      }
+    ]
+  },
+  "us-invoice.pdf": {
+    "method": "pdf-text",
+    "invoice_number": "10482",
+    "customer_name": "Harbor Cafe LLC",
+    "invoice_date": "2026-09-01",
+    "items": [
+      {
+        "description": "Oat Milk Barista Edition 1L",
+        "sku": "OM-1L",
+        "quantity": 12,
+        "unit": null
+      },
+      {
+        "description": "Paper Cups 12oz, sleeve of 50",
+        "sku": "CUP-12",
+        "quantity": 20,
+        "unit": null
+      },
+      {
+        "description": "Sip Lids for 12oz Cups",
+        "sku": "LID-12",
+        "quantity": 20,
+        "unit": null
+      },
+      {
+        "description": "Espresso Machine Descaler 2-pack",
+        "sku": "DSC-2PK",
+        "quantity": 2,
+        "unit": null
+      },
+      {
+        "description": "Dinner Napkins 2-ply (case of 1,000)",
+        "sku": "NAP-1000",
+        "quantity": 3,
+        "unit": null
+      }
+    ]
+  },
+  "delivery-challan.pdf": {
+    "method": "pdf-text",
+    "invoice_number": "DC-7781",
+    "customer_name": "Green Leaf Hotels",
+    "invoice_date": "2026-09-12",
+    "items": [
+      {
+        "description": "Bath Towel, white cotton, 600 GSM, 70x140 cm, hotel logo embroidered on the border",
+        "sku": "WT-500",
+        "quantity": 40,
+        "unit": "pcs"
+      },
+      {
+        "description": "Hand Towel 40x60 cm",
+        "sku": "HT-300",
+        "quantity": 60,
+        "unit": "pcs"
+      },
+      {
+        "description": "Liquid Hand Wash 5L refill, lavender",
+        "sku": "LHW-5L",
+        "quantity": 6,
+        "unit": "can"
+      },
+      {
+        "description": "Toilet Roll 2-ply premium, 10 rolls per bundle, individually wrapped for guest rooms",
+        "sku": "TR-2P",
+        "quantity": 12,
+        "unit": "bundle"
+      },
+      {
+        "description": "Garbage Bags 30 gal, heavy duty",
+        "sku": "GB-30",
+        "quantity": 2,
+        "unit": "box"
+      }
+    ]
+  },
+  "us-invoice.png": {
+    "method": "ocr",
+    "invoice_number": "10482",
+    "customer_name": "Harbor Cafe LLC",
+    "invoice_date": "2026-09-01",
+    "items": [
+      {
+        "description": "Oat Milk Barista Edition 1L",
+        "sku": "OM-1L",
+        "quantity": 12,
+        "unit": null
+      },
+      {
+        "description": "Paper Cups 12oz, sleeve of 50",
+        "sku": "CUP-12",
+        "quantity": 20,
+        "unit": null
+      },
+      {
+        "description": "Sip Lids for 12oz Cups",
+        "sku": "LID-12",
+        "quantity": 20,
+        "unit": null
+      },
+      {
+        "description": "Espresso Machine Descaler 2-pack",
+        "sku": "DSC-2PK",
+        "quantity": 2,
+        "unit": null
+      },
+      {
+        "description": "Dinner Napkins 2-ply (case of 1,000)",
+        "sku": "NAP-1000",
+        "quantity": 3,
+        "unit": null
+      }
+    ]
+  },
+  "scanned-gst-invoice.pdf": {
+    "method": "ocr",
+    "invoice_number": "SGT/2026-27/0418",
+    "customer_name": "Sharma Kirana Stores",
+    "invoice_date": "2026-09-03",
+    "items": [
+      {
+        "description": "Basmati Rice Premium 5kg bag",
+        "sku": null,
+        "quantity": 10,
+        "unit": "bag"
+      },
+      {
+        "description": "Toor Dal 1kg pack",
+        "sku": null,
+        "quantity": 25,
+        "unit": "pack"
+      },
+      {
+        "description": "Sunflower Oil 1L pouch",
+        "sku": null,
+        "quantity": 24,
+        "unit": "pcs"
+      },
+      {
+        "description": "Tata Salt 1kg",
+        "sku": null,
+        "quantity": 50,
+        "unit": "pcs"
+      },
+      {
+        "description": "Parle-G Biscuits 800g",
+        "sku": null,
+        "quantity": 12,
+        "unit": "box"
+      },
+      {
+        "description": "Surf Excel Detergent Powder 2kg",
+        "sku": null,
+        "quantity": 8,
+        "unit": "pcs"
+      }
+    ]
+  }
+}
