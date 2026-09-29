@@ -30,7 +30,7 @@ The site also has:
 ## Files
 
 - `js/data.js`: all site content (company details, copy, products, image paths). **Edit this file to change text.**
-- `js/scene.js`: Three.js scenes. The hero doorway, plus procedural models for doors, pass boxes, tables, LAF units, booths, AHUs, clean rooms, the modular OT, benches, dust collectors, scrub sinks and garment cubicles.
+- `js/scene.js`: Three.js scenes. The hero doorway, plus a procedural 3D model for every product, built to match its product photo (proportions, colours, doors, handles, hinges and fittings). Metal Doors and AHU Systems have a type switcher (`modelStyles` in `js/data.js`).
 - `js/app.js`: hash router, page templates and interactions (tilt, reveal, carousel, forms, lightbox).
 - `css/styles.css`: design system (graphite and brushed steel, with the brand's amber `#efa21f`).
 

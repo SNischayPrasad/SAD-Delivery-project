@@ -108,6 +108,15 @@
       name: 'Metal Doors',
       category: 'doors',
       model: 'door',
+      modelOptions: { style: 'scientific' },
+      modelStyles: [
+        ['Scientific', { style: 'scientific' }],
+        ['Fire', { style: 'fire' }],
+        ['General', { style: 'general' }],
+        ['Decorative', { style: 'decorative' }],
+        ['Shaft / Firehose', { style: 'shaft' }],
+        ['Clean room', { style: 'cleanroom' }],
+      ],
       image: img('home-sa-doors.jpg'),
       short: 'High-performance steel doorsets for laboratories, research facilities and controlled environments.',
       summary: [
@@ -158,7 +167,7 @@
       slug: 'hvac-systems',
       name: 'HVAC Systems',
       category: 'rooms',
-      model: 'ahu',
+      model: 'hvac',
       image: img('hvac-systems.jpg'),
       short: 'Heating, ventilation and air conditioning that controls temperature, humidity and air quality.',
       summary: [
@@ -191,6 +200,10 @@
       category: 'rooms',
       model: 'ahu',
       modelOptions: { decks: 2 },
+      modelStyles: [
+        ['Double decker', { decks: 2 }],
+        ['Single decker', { decks: 1 }],
+      ],
       image: img('ahu-systems.jpg'),
       short: 'Air handling units for efficient ventilation, heating and cooling of large spaces.',
       summary: [
@@ -238,8 +251,7 @@
       slug: 'gi-work-table',
       name: 'GI Work Table',
       category: 'furniture',
-      model: 'table',
-      modelOptions: { finish: 'gi' },
+      model: 'pedestal',
       image: img('gi-work-table.jpg'),
       short: 'Sturdy galvanised-iron tables with a hygienic surface for medical and lab tasks.',
       summary: [
@@ -271,8 +283,7 @@
       slug: 'mobile-laf',
       name: 'Mobile LAF',
       category: 'airflow',
-      model: 'laf',
-      modelOptions: { mobile: true },
+      model: 'mobilelaf',
       image: img('mobile-laf.jpg'),
       short: 'Portable laminar airflow units that bring a clean zone wherever you need it.',
       summary: [
@@ -414,7 +425,6 @@
       name: 'Work Table SS',
       category: 'furniture',
       model: 'table',
-      modelOptions: { finish: 'ss' },
       image: img('work-table-ss.jpg'),
       short: 'Stainless steel work tables for healthcare, food processing and laboratories.',
       summary: [
@@ -481,7 +491,7 @@
       subtitle: 'Non-FLP, two leaf',
       category: 'transfer',
       model: 'passbox',
-      modelOptions: { dynamic: true, leaves: 2 },
+      modelOptions: { type: 'dynamic' },
       image: img('dynamic-passbox-non-flp-two-leaf.jpg'),
       short: 'Ventilated, interlocked transfer chambers for moving materials between clean zones.',
       summary: [
@@ -555,8 +565,7 @@
       name: 'OT LAF',
       subtitle: 'Operating Theater Laminar Air Flow',
       category: 'airflow',
-      model: 'laf',
-      modelOptions: { ceiling: true },
+      model: 'otlaf',
       image: img('ot-laf.jpg'),
       short: 'HEPA-filtered laminar airflow that keeps the surgical field sterile.',
       summary: [
@@ -597,8 +606,7 @@
       name: 'Reverse LAF',
       subtitle: 'Reverse laminar air flow',
       category: 'airflow',
-      model: 'laf',
-      modelOptions: { reverse: true },
+      model: 'reverselaf',
       image: img('reverse-laf-or-laminer.jpg'),
       short: 'Unidirectional ceiling-to-floor airflow for sterile work areas.',
       summary: [
@@ -639,8 +647,7 @@
       name: 'Foot Operated Scrubber',
       subtitle: 'Hands-free scrub station',
       category: 'furniture',
-      model: 'scrubber',
-      modelOptions: { foot: true },
+      model: 'footscrubber',
       image: img('foot-operating-scrubber.jpg'),
       short: 'Floor-standing SS scrub sink with foot-pedal water control.',
       summary: [
@@ -673,8 +680,7 @@
       name: 'Dynamic Three Leaf Pass Box',
       subtitle: 'FLP, for flammable liquids',
       category: 'transfer',
-      model: 'passbox',
-      modelOptions: { dynamic: true, leaves: 3 },
+      model: 'passbox3',
       image: img('dynamic-three-leaf-passbooks-flp.jpg'),
       short: 'Flame-proof, three-door interlocked chambers for transferring flammable liquids.',
       summary: [
@@ -716,7 +722,7 @@
       name: 'Static Pass Box',
       category: 'transfer',
       model: 'passbox',
-      modelOptions: { dynamic: false, leaves: 2 },
+      modelOptions: { type: 'static' },
       image: img('static-passbox.jpg'),
       short: 'Simple, reliable interlocked chambers for material transfer between zones.',
       summary: [

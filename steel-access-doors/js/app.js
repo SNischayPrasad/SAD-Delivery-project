@@ -491,8 +491,7 @@
     const p = bySlug[slug];
     if (!p) return pageNotFound();
     const related = products.filter((x) => x.category === p.category && x.slug !== p.slug).concat(products.filter((x) => x.category !== p.category)).slice(0, 4);
-    const isDoor = p.model === 'door';
-    const doorStyles = [['scientific', 'Scientific'], ['fire', 'Fire'], ['general', 'Commercial'], ['decorative', 'Decorative'], ['shaft', 'Shaft']];
+    const styles = p.modelStyles || [];
     const specs = p.specs || [];
     return `
       ${pageHero(p.name, [['Products', '#/products'], [catName[p.category], '#/products/' + p.category], [p.name]], p.subtitle || '')}
@@ -521,7 +520,7 @@
               </div>
               <p class="viewer-hint">${icon('hand')} <span>Drag to rotate</span></p>
             </div>
-            ${isDoor ? `<div class="door-styles" role="group" aria-label="Door type">${doorStyles.map(([k, l], i) => `<button class="chip-btn${i === 0 ? ' active' : ''}" data-style="${k}">${l}</button>`).join('')}</div>` : ''}
+            ${styles.length ? `<div class="door-styles" role="group" aria-label="Model type">${styles.map(([l], i) => `<button class="chip-btn${i === 0 ? ' active' : ''}" data-style="${i}">${esc(l)}</button>`).join('')}</div>` : ''}
           </div>
         </div>
       </section>
@@ -892,7 +891,7 @@
     $$('[data-style]', card).forEach((b) =>
       b.addEventListener('click', () => {
         $$('[data-style]', card).forEach((x) => x.classList.toggle('active', x === b));
-        if (v && v.api) v.api.setModel('door', { style: b.dataset.style });
+        if (v && v.api) v.api.setModel(p.model, { ...p.modelOptions, ...p.modelStyles[+b.dataset.style][1] });
       })
     );
     // show the model's own interaction hint once it is ready
