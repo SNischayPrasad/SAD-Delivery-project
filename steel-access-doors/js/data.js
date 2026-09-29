@@ -47,7 +47,7 @@
     stats: [
       { value: 99, suffix: '+', label: 'Medical & pharma clients supplied' },
       { value: 200, suffix: '+', label: 'Skilled professionals on our team' },
-      { value: 20, suffix: '', label: 'Product lines, from doors to full OTs' },
+      { value: 19, suffix: '', label: 'Products, from doors to full OTs' },
     ],
     why: [
       {
